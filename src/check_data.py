@@ -62,7 +62,7 @@ def display_mel_spectrogram(file_path):
 def main(batch_start, batch_end):
     # Duyệt qua các batch từ batch_start đến batch_end
     for i in range(batch_start, batch_end + 1):
-        batch_num = f"{i:02d}"  # Sử dụng f-string để định dạng tên batch như batch_00, batch_01...
+        batch_num = f"{i:02d}"
         labels_path = os.path.join(BASE_PATH, f"batch_{batch_num}_labels.npy")
         data_path = os.path.join(BASE_PATH, f"batch_{batch_num}_data.npy")
 
