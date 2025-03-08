@@ -21,7 +21,11 @@
         python src/preprocess.py --batch_start 6 --batch_end 11
         Lưu ý: Số 6 và 11 là số của batch được đánh dấu. Ví dụ Bình làm từ batch_00 đến batch_05 thì lệnh sẽ là:
             python src/preprocess.py --batch_start 0 --batch_end 5
-    - Bước 2: Sau khi chạy preprocess.py xong thì kiểm tra xem folder processed_data đã có dữ liệu chưa. Nếu processed_data chưa có dữ liệu thì kiểm tra lỗi và chạy lại Bước 11, nếu có rồi thì chạy file train.py bằng lệnh:
+    - Bước 2: Sau khi chạy preprocess.py xong thì kiểm tra xem folder processed_data đã có dữ liệu chưa. Nếu processed_data chưa có dữ liệu thì kiểm tra lỗi (hoặc datasets) và chạy lại Bước 11, nếu có rồi thì chạy file check_data.py để kiểm tra dữ liệu:
+            python src/check_data.py --batch_start 6 --batch_end 11
+        Lưu ý: Số 6 và 11 là số của batch được đánh dấu. Ví dụ Bình làm từ batch_00 đến batch_05 thì lệnh sẽ là:
+            python src/check_data.py --batch_start 0 --batch_end 5
+    - Bước 3: Chạy file train.py bằng lệnh:
         python src/train.py --batch_start 6 --batch_end 11
         Lưu ý: Số 6 và 11 là số của batch được đánh dấu. Ví dụ Bình làm từ batch_00 đến batch_05 thì lệnh sẽ là:
             python src/train.py --batch_start 0 --batch_end 5
