@@ -3,8 +3,8 @@ import numpy as np
 import os
 
 # Đường dẫn dữ liệu
-DATASET_PATH = "../datasets/nsynth-train/batches/"
-PROCESSED_PATH = "../processed_data/"
+DATASET_PATH = "E:/AI-Instrument-Classifier/datasets/nsynth-train/batches/"
+PROCESSED_PATH = "E:/AI-Instrument-Classifier/processed_data/"
 
 def extract_mel_spectrogram(file_path):
     """Trích xuất Mel-Spectrogram từ file âm thanh"""

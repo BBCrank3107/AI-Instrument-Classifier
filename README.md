@@ -9,7 +9,7 @@
     - spleeter_output
 2. Tải thư viện theo cú pháp trong requirements.txt
 3. Tải datasets sau đó di chuyển vào các thư mục tương ứng trong folder datasets
-    Lưu ý: tạo folder batches trong nsynth-train
+    Lưu ý: tạo folder batches trong nsynth-train. Sau đó tải các batch và di chuyển vào thư mục batches.
 4. Run code
     - Bước 1: Chạy file preprocess.py bằng lệnh:
         python src/preprocess.py --batch_start 6 --batch_end 11

@@ -9,7 +9,7 @@ parser.add_argument("--batch_start", type=int, required=True, help="Batch bắt 
 parser.add_argument("--batch_end", type=int, required=True, help="Batch kết thúc")
 args = parser.parse_args()
 
-PROCESSED_PATH = "../processed_data/"
+PROCESSED_PATH = "E:/AI-Instrument-Classifier/processed_data/"
 
 # Load dữ liệu đã xử lý
 def load_processed_data(batch_start, batch_end):
@@ -75,7 +75,7 @@ print("🚀 Bắt đầu huấn luyện...")
 model.fit(X_train, y_train, epochs=10, batch_size=32)
 
 # Lưu model
-model_dir = "D:/Python/AI-Instrument-Classifier/models"
+model_dir = "E:/AI-Instrument-Classifier/models"
 os.makedirs(model_dir, exist_ok=True)
 model_path = os.path.join(model_dir, f"model_batch_{args.batch_start}_{args.batch_end}.h5")
 model.save(model_path)
