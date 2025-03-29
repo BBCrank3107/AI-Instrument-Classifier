@@ -2,12 +2,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 from collections import Counter
 import os
-import argparse
 
-# Đường dẫn đến dữ liệu, thay thế bằng phần biến
+# Đường dẫn đến dữ liệu
 BASE_PATH = "D:/Python/AI-Instrument-Classifier/processed_data/"
 
-def analyze_labels(file_path):
+def analyze_labels(file_path, dataset_name):
     """Phân tích nhãn từ file .npy"""
     if not os.path.exists(file_path):
         print(f"⚠️ File {file_path} không tồn tại!")
@@ -16,6 +15,7 @@ def analyze_labels(file_path):
     labels = np.load(file_path)
 
     # Hiển thị thông tin tổng quan về dữ liệu
+    print(f"\n🔍 **Phân tích Labels - {dataset_name}**")
     print("📌 Shape của labels:", labels.shape)
     print("📌 Kiểu dữ liệu:", labels.dtype)
 
@@ -33,13 +33,8 @@ def analyze_labels(file_path):
     for label, count in label_counts.items():
         print(f"  - {label}: {count} mẫu")
 
-    # Nếu dữ liệu là số, kiểm tra giá trị min/max
-    if np.issubdtype(labels.dtype, np.number):
-        print("📌 Giá trị nhỏ nhất:", labels.min())
-        print("📌 Giá trị lớn nhất:", labels.max())
-
-def display_mel_spectrogram(file_path):
-    """Hiển thị Mel-Spectrogram đầu tiên trong batch"""
+def display_mel_spectrogram(file_path, dataset_name):
+    """Hiển thị Mel-Spectrogram đầu tiên trong file"""
     if not os.path.exists(file_path):
         print(f"⚠️ File {file_path} không tồn tại!")
         return
@@ -47,39 +42,29 @@ def display_mel_spectrogram(file_path):
     mel_spec = np.load(file_path)
 
     if len(mel_spec.shape) < 3:
-        print("⚠️ Dữ liệu không đúng định dạng Mel-Spectrogram!")
+        print(f"⚠️ Dữ liệu không đúng định dạng Mel-Spectrogram trong {dataset_name}!")
         return
 
     # Hiển thị Mel-Spectrogram đầu tiên
     plt.figure(figsize=(10, 4))
     plt.imshow(mel_spec[0, :, :, 0], cmap="inferno", aspect="auto")
     plt.colorbar(label="Decibels")
-    plt.title("Mel-Spectrogram Sample")
+    plt.title(f"Mel-Spectrogram Sample - {dataset_name}")
     plt.xlabel("Time Frames")
     plt.ylabel("Mel Frequency")
     plt.show()
 
-def main(batch_start, batch_end):
-    # Duyệt qua các batch từ batch_start đến batch_end
-    for i in range(batch_start, batch_end + 1):
-        batch_num = f"{i:02d}"
-        labels_path = os.path.join(BASE_PATH, f"batch_{batch_num}_labels.npy")
-        data_path = os.path.join(BASE_PATH, f"batch_{batch_num}_data.npy")
+def main():
+    # Danh sách các tập dữ liệu cần kiểm tra
+    datasets = ["train", "valid", "test"]
 
-        print(f"\n🔍 **Phân tích Labels - batch_{batch_num}**")
-        analyze_labels(labels_path)
+    # Duyệt qua từng tập dữ liệu
+    for dataset in datasets:
+        labels_path = os.path.join(BASE_PATH, f"{dataset}_labels.npy")
+        data_path = os.path.join(BASE_PATH, f"{dataset}_data.npy")
 
-        print(f"\n🎵 **Hiển thị Mel-Spectrogram - batch_{batch_num}**")
-        display_mel_spectrogram(data_path)
+        analyze_labels(labels_path, dataset)
+        display_mel_spectrogram(data_path, dataset)
 
 if __name__ == "__main__":
-    # Thiết lập parser để nhận tham số từ dòng lệnh
-    parser = argparse.ArgumentParser(description="Analyze and display Mel-Spectrograms from batches.")
-    parser.add_argument('--batch_start', type=int, required=True, help="The starting batch number")
-    parser.add_argument('--batch_end', type=int, required=True, help="The ending batch number")
-
-    # Parse các tham số
-    args = parser.parse_args()
-
-    # Chạy chính hàm main với các tham số từ dòng lệnh
-    main(args.batch_start, args.batch_end)
+    main()
