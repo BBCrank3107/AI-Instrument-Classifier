@@ -19,8 +19,11 @@
 - Tải bộ dữ liệu NSynth từ đây: https://magenta.tensorflow.org/datasets/nsynth
 - Giải nén và đặt vào thư mục datasets/ với cấu trúc:
     datasets/
+  
         nsynth-train/
+  
         nsynth-test/
+  
         nsynth-valid/
 
 ## Cấu trúc thư mục
