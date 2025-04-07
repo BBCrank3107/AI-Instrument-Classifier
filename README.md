@@ -25,26 +25,47 @@
 
 ## Cấu trúc thư mục
 AI-Instrument-Classifier/
+
 ├── datasets/              # Dữ liệu NSynth
+
 │   ├── nsynth-train/
+
 │   ├── nsynth-test/
+
 │   └── nsynth-valid/
+
 ├── models/               # Mô hình đã huấn luyện
+
 │   ├── resnet_mel_instrument_classifier_89.h5
+
 │   ├── resnet_large_kernel.h5
+
 │   └── resnet_small_kernel.h5
+
 ├── music/                # File âm thanh để thử nghiệm
+
 │   └── audio.wav
+
 │   └── audio2.wav
+
 ├── src/                  # Mã nguồn
+
 │   ├── check_model.py    # Kiểm tra và in summary mô hình
+
 │   ├── analyze_model.py  # Phân tích chi tiết mô hình
+
 │   ├── evaluate_model.py  # Tính toán model dựa trên tập test
+
 │   ├── test_classifier.py  # Nhận diện và phân loại nhạc cụ
+
 │   ├── train.ipynb       # Huấn luyện mô hình gốc (kernel 3x3)
+
 │   ├── train_large_kernel.ipynb  # Huấn luyện mô hình kernel 5x5
+
 │   └── train_small_kernel.ipynb  # Huấn luyện mô hình kernel 1x1
+
 ├── README.md             # File này
+
 └── requirements.txt      # Danh sách thư viện
 
 ## Cách sử dụng
