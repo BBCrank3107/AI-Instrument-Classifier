@@ -1,1 +1,4 @@
-pip install tensorflow numpy librosa scikit-learn
+librosa
+numpy
+tensorflow
+scikit-learn

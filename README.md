@@ -1,32 +1,68 @@
-1. Xóa các file example.txt trong các thư mục
-    - datasets/nsynth-test
-    - datasets/nsynth-train
-    - datasets/nsynth-valid
-    - models
-    - output
-    - processed_data
-    - spectrograms
-    - spleeter_output
-2. Tải thư viện theo cú pháp trong requirements.txt
-3. Tải datasets sau đó di chuyển vào các thư mục tương ứng trong folder datasets
-    Lưu ý: tạo folder batches trong nsynth-train. Sau đó tải các batch và di chuyển vào thư mục batches.
-4.  - Tại file preprocess.py:
-        + Dòng code 6: Thay đường dẫn hiện tại bằng đường dẫn tuyệt đối lần lượt đến các thư mục batches.
-        + Dòng code 7: Thay đường dẫn hiện tại bằng đường dẫn tuyệt đối lần lượt đến các thư mục processed_data.
-    - Tại file train.py:
-        + Dòng code 12: Thay đường dẫn hiện tại bằng đường dẫn tuyệt đối đến thư mục processed_data.
-        + Dòng code 78: Thay đường dẫn hiện tại bằng đường dẫn tuyệt đối đến thư mục models.
-4. Run code
-    - Bước 1: Chạy file preprocess.py bằng lệnh:
-        python src/preprocess.py --batch_start 6 --batch_end 11
-        Lưu ý: Số 6 và 11 là số của batch được đánh dấu. Ví dụ Bình làm từ batch_00 đến batch_05 thì lệnh sẽ là:
-            python src/preprocess.py --batch_start 0 --batch_end 5
-    - Bước 2: Sau khi chạy preprocess.py xong thì kiểm tra xem folder processed_data đã có dữ liệu chưa. Nếu processed_data chưa có dữ liệu thì kiểm tra lỗi (hoặc datasets) và chạy lại Bước 11, nếu có rồi thì chạy file check_data.py để kiểm tra dữ liệu:
-            python src/check_data.py --batch_start 6 --batch_end 11
-        Lưu ý: Số 6 và 11 là số của batch được đánh dấu. Ví dụ Bình làm từ batch_00 đến batch_05 thì lệnh sẽ là:
-            python src/check_data.py --batch_start 0 --batch_end 5
-    - Bước 3: Chạy file train.py bằng lệnh:
-        python src/train.py --batch_start 6 --batch_end 11
-        Lưu ý: Số 6 và 11 là số của batch được đánh dấu. Ví dụ Bình làm từ batch_00 đến batch_05 thì lệnh sẽ là:
-            python src/train.py --batch_start 0 --batch_end 5
-5. Còn lại Bình sẽ cập nhật sau.
+# AI Instrument Classifier
+- Dự án này xây dựng một mô hình học sâu (deep learning) dựa trên kiến trúc ResNet để phân loại nhạc cụ từ dữ liệu âm thanh (Mel-spectrogram). Dự án sử dụng bộ dữ liệu NSynth và bao gồm các mô hình với các kích thước kernel khác nhau để thử nghiệm hiệu suất.
+
+## Mục tiêu
+- Huấn luyện mô hình ResNet để nhận diện 11 loại nhạc cụ khác nhau.
+- Thử nghiệm với các kích thước kernel khác nhau (1x1, 3x3, 5x5) trong residual block để so sánh hiệu quả.
+
+## Yêu cầu hệ thống
+- Python 3.8 hoặc cao hơn
+- GPU (khuyến nghị, nhưng có thể chạy trên CPU)
+- Hệ điều hành: Windows
+
+## Cài đặt
+### 2. Cài đặt các thư viện
+- Cài đặt các thư viện cần thiết từ file requirements.txt:
+    pip install -r requirements.txt
+
+### 3. Tải dữ liệu
+- Tải bộ dữ liệu NSynth từ đây: https://magenta.tensorflow.org/datasets/nsynth
+- Giải nén và đặt vào thư mục datasets/ với cấu trúc:
+    datasets/
+        nsynth-train/
+        nsynth-test/
+        nsynth-valid/
+
+## Cấu trúc thư mục
+AI-Instrument-Classifier/
+├── datasets/              # Dữ liệu NSynth
+│   ├── nsynth-train/
+│   ├── nsynth-test/
+│   └── nsynth-valid/
+├── models/               # Mô hình đã huấn luyện
+│   ├── resnet_mel_instrument_classifier_89.h5
+│   ├── resnet_large_kernel.h5
+│   └── resnet_small_kernel.h5
+├── music/                # File âm thanh để thử nghiệm
+│   └── audio.wav
+│   └── audio2.wav
+├── src/                  # Mã nguồn
+│   ├── check_model.py    # Kiểm tra và in summary mô hình
+│   ├── analyze_model.py  # Phân tích chi tiết mô hình
+│   ├── evaluate_model.py  # Tính toán model dựa trên tập test
+│   ├── test_classifier.py  # Nhận diện và phân loại nhạc cụ
+│   ├── train.ipynb       # Huấn luyện mô hình gốc (kernel 3x3)
+│   ├── train_large_kernel.ipynb  # Huấn luyện mô hình kernel 5x5
+│   └── train_small_kernel.ipynb  # Huấn luyện mô hình kernel 1x1
+├── README.md             # File này
+└── requirements.txt      # Danh sách thư viện
+
+## Cách sử dụng
+### 1. Huấn luyện mô hình
+- Mở file .ipynb và chạy từng cell để huấn luyện:
+    train.ipynb: Mô hình gốc (kernel 3x3).
+    train_large_kernel.ipynb: Mô hình với kernel 5x5.
+    train_small_kernel.ipynb: Mô hình với kernel 1x1.
+
+### 2. Tính toán Accuracy của model dựa trên tập test
+- Chạy file evaluate_model.py để tính toán Accuracy của model trên tập test:
+    python src/evaluate_model.py
+
+### 3. Kiểm tra mô hình
+- Chạy file check_model.py để xem summary:
+    python src/check_model.py
+
+### 4. Phân tích mô hình
+- Chạy file analyze_model.py để xem chi tiết lớp và trọng số:
+    python src/analyze_model.py
+
