@@ -54,9 +54,9 @@ AI-Instrument-Classifier/
 
 ├── src/                  # Mã nguồn
 
-│   ├── check_model.py    # Kiểm tra và in summary mô hình
+│   ├── confusion_matrix.py    # Vẽ ma trận nhầm lẫn
 
-│   ├── analyze_model.py  # Phân tích chi tiết mô hình
+│   ├── analyze_model.py  # Phân tích chi tiết mô hình (các lớp)
 
 │   ├── evaluate_model.py  # Tính toán model dựa trên tập test
 
@@ -83,11 +83,15 @@ AI-Instrument-Classifier/
 - Chạy file evaluate_model.py để tính toán Accuracy của model trên tập test:
     python src/evaluate_model.py
 
-### 3. Kiểm tra mô hình
-- Chạy file check_model.py để xem summary:
-    python src/check_model.py
+### 3. Vẽ ma trận nhầm lẫn
+- Chạy file confusion_matrix.py để vẽ ma trận:
+    python src/confusion_matrix.py
 
 ### 4. Phân tích mô hình
 - Chạy file analyze_model.py để xem chi tiết lớp và trọng số:
     python src/analyze_model.py
+
+### 5. Nhận diện nhạc cụ
+- Chạy file test_classifier.py để test model trong nhận diện nhạc cụ.
+    python src/test_classifier.py
 
