@@ -108,13 +108,13 @@ models_info = [
         'name': 'resnet_mel_instrument_classifier_3x3.h5',
         'kernel_size': 3,
         'filters': [32, 64, 128],
-        'path': r'D:\Python\AI-Instrument-Classifier\models\resnet_mel_instrument_classifier_1x1.h5'
+        'path': r'D:\Python\AI-Instrument-Classifier\models\resnet_mel_instrument_classifier_3x3.h5'
     },
     {
         'name': 'resnet_mel_instrument_classifier_5x5.h5',
         'kernel_size': 5,
         'filters': [64, 128, 256],
-        'path': r'D:\Python\AI-Instrument-Classifier\models\resnet_mel_instrument_classifier_1x1.h5'
+        'path': r'D:\Python\AI-Instrument-Classifier\models\resnet_mel_instrument_classifier_5x5.h5'
     }
 ]
 
