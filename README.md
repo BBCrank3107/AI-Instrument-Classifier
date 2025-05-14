@@ -25,27 +25,27 @@
 
 ## Cấu trúc thư mục
 AI-Instrument-Classifier/
-├── datasets/              # Dữ liệu NSynth
+├── datasets/                       # Dữ liệu NSynth
 │   ├── nsynth-train/
 │   ├── nsynth-test/
 │   └── nsynth-valid/
-├── models/               # Mô hình đã huấn luyện
-│   ├── resnet_mel_instrument_classifier_89.h5
-│   ├── resnet_large_kernel.h5
-│   └── resnet_small_kernel.h5
-├── music/                # File âm thanh để thử nghiệm
+├── models/                         # Mô hình đã huấn luyện
+│   ├── resnet_mel_instrument_classifier_1x1.h5
+│   ├── resnet_mel_instrument_classifier_3x3.h5
+│   └── resnet_mel_instrument_classifier_5x5.h5
+├── music/                          # File âm thanh để thử nghiệm
 │   └── audio.wav
 │   └── audio2.wav
-├── src/                  # Mã nguồn
-│   ├── check_model.py    # Kiểm tra và in summary mô hình
-│   ├── analyze_model.py  # Phân tích chi tiết mô hình
-│   ├── evaluate_model.py  # Tính toán model dựa trên tập test
-│   ├── test_classifier.py  # Nhận diện và phân loại nhạc cụ
-│   ├── train.ipynb       # Huấn luyện mô hình gốc (kernel 3x3)
-│   ├── train_large_kernel.ipynb  # Huấn luyện mô hình kernel 5x5
-│   └── train_small_kernel.ipynb  # Huấn luyện mô hình kernel 1x1
-├── README.md             # File này
-└── requirements.txt      # Danh sách thư viện
+├── src/                            # Mã nguồn
+│   ├── analyze_model.py            # Phân tích chi tiết mô hình
+│   ├── confusion_matrix.py         # Tạo ma trận nhầm lẫn
+│   ├── evaluate_model.py           # Tính toán model dựa trên tập test
+│   ├── test_classifier.py          # Nhận diện và phân loại nhạc cụ
+│   ├── train_large_kernel.ipynb    # Huấn luyện mô hình kernel 5x5
+│   ├── train_small_kernel.ipynb    # Huấn luyện mô hình kernel 1x1
+│   └── train.ipynb                 # Huấn luyện mô hình gốc (kernel 3x3)
+├── README.md                       # File này
+└── requirements.txt                # Danh sách thư viện
 
 ## Cách sử dụng
 ### 1. Huấn luyện mô hình
@@ -59,10 +59,13 @@ AI-Instrument-Classifier/
     python src/evaluate_model.py
 
 ### 3. Kiểm tra mô hình
-- Chạy file check_model.py để xem summary:
-    python src/check_model.py
+- Chạy file confusion_matrix.py để tạo ma trận nhầm lẫn:
+    python src/confusion_matrix.py
 
 ### 4. Phân tích mô hình
 - Chạy file analyze_model.py để xem chi tiết lớp và trọng số:
     python src/analyze_model.py
 
+### 5. Thử nghiệm
+- Chạy file test_classifier.py để thử nghiệm model với nhạc thực tế:
+    python src/test_classifier.py
