@@ -19,32 +19,54 @@
 - Tải bộ dữ liệu NSynth từ đây: https://magenta.tensorflow.org/datasets/nsynth
 - Giải nén và đặt vào thư mục datasets/ với cấu trúc:
     datasets/
+
         nsynth-train/
+
         nsynth-test/
+
         nsynth-valid/
 
 ## Cấu trúc thư mục
 AI-Instrument-Classifier/
+
 ├── datasets/                       # Dữ liệu NSynth
+
 │   ├── nsynth-train/
+
 │   ├── nsynth-test/
+
 │   └── nsynth-valid/
+
 ├── models/                         # Mô hình đã huấn luyện
+
 │   ├── resnet_mel_instrument_classifier_1x1.h5
+
 │   ├── resnet_mel_instrument_classifier_3x3.h5
+
 │   └── resnet_mel_instrument_classifier_5x5.h5
-├── music/                          # File âm thanh để thử nghiệm
-│   └── audio.wav
+
+├── music/                          # File âm thanh để thử nghiệm 
+
 │   └── audio2.wav
+
 ├── src/                            # Mã nguồn
+
 │   ├── analyze_model.py            # Phân tích chi tiết mô hình
+
 │   ├── confusion_matrix.py         # Tạo ma trận nhầm lẫn
+
 │   ├── evaluate_model.py           # Tính toán model dựa trên tập test
+
 │   ├── test_classifier.py          # Nhận diện và phân loại nhạc cụ
+
 │   ├── train_large_kernel.ipynb    # Huấn luyện mô hình kernel 5x5
+
 │   ├── train_small_kernel.ipynb    # Huấn luyện mô hình kernel 1x1
+
 │   └── train.ipynb                 # Huấn luyện mô hình gốc (kernel 3x3)
+
 ├── README.md                       # File này
+
 └── requirements.txt                # Danh sách thư viện
 
 ## Cách sử dụng
